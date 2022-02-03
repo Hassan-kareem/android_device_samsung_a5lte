@@ -38,6 +38,7 @@
 #include "ProximitySensor.h"
 #include "AkmSensor.h"
 #include "GyroSensor.h"
+#include "AccelSensor.h"
 
 /*****************************************************************************/
 
@@ -71,12 +72,12 @@
 
 /* The SENSORS Module */
 static const struct sensor_t sSensorList[] = {
-        { "KR3DM 3-axis Accelerometer",
-          "STMicroelectronics",
+        { "BMC150 Acceleration Sensor",
+          "Bosch Sensortec",
           1, SENSORS_ACCELERATION_HANDLE,
-          SENSOR_TYPE_ACCELEROMETER, RANGE_A, CONVERT_A, 0.23f, 20000, 0, 0,
-          "", "", 0, 0, {0, 0},},
-        { "AK8975 3-axis Magnetic field sensor",
+          SENSOR_TYPE_ACCELEROMETER, RANGE_A, CONVERT_A, 0.13f, 10000, 0, 0,
+          SENSOR_STRING_TYPE_ACCELEROMETER, "", 0, SENSOR_FLAG_CONTINUOUS_MODE, { } },
+/*        { "AK8975 3-axis Magnetic field sensor",
           "Asahi Kasei Microdevices",
           1, SENSORS_MAGNETIC_FIELD_HANDLE,
           SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, CONVERT_M, 6.8f, 16667, 0, 0,
@@ -106,6 +107,7 @@ static const struct sensor_t sSensorList[] = {
           1, SENSORS_SIGNIFICANT_MOTION_HANDLE,
           SENSOR_TYPE_SIGNIFICANT_MOTION, 1.0f, 1.0f, 0.23f, 0, 0, 0,
           "", "", 0, SENSOR_FLAG_WAKE_UP, {0, 0},},
+*/
 };
 
 
@@ -148,10 +150,12 @@ struct sensors_poll_context_t {
     int flush(int handle);
 private:
     enum {
-        light           = 0,
-        proximity       = 1,
+        accel           = 0,
+/*        proximity       = 1,
         akm             = 2,
         gyro            = 3,
+        light           = 4,
+*/
         numSensorDrivers,
         numFds,
     };
@@ -165,7 +169,8 @@ private:
     int handleToDriver(int handle) const {
         switch (handle) {
             case ID_A:
-            case ID_M:
+                return accel;
+/*            case ID_M:
             case ID_O:
             case ID_SM:
                 return akm;
@@ -175,6 +180,7 @@ private:
                 return light;
             case ID_GY:
                 return gyro;
+*/
         }
         return -EINVAL;
     }
@@ -184,7 +190,12 @@ private:
 
 sensors_poll_context_t::sensors_poll_context_t()
 {
-    mSensors[light] = new LightSensor();
+    mSensors[accel] = new AccelSensor();
+    mPollFds[accel].fd = mSensors[accel]->getFd();
+    mPollFds[accel].events = POLLIN;
+    mPollFds[accel].revents = 0;
+
+/*    mSensors[light] = new LightSensor();
     mPollFds[light].fd = mSensors[light]->getFd();
     mPollFds[light].events = POLLIN;
     mPollFds[light].revents = 0;
@@ -203,7 +214,7 @@ sensors_poll_context_t::sensors_poll_context_t()
     mPollFds[gyro].fd = mSensors[gyro]->getFd();
     mPollFds[gyro].events = POLLIN;
     mPollFds[gyro].revents = 0;
-
+*/
     int wakeFds[2];
     int result = pipe(wakeFds);
     ALOGE_IF(result<0, "error creating wake pipe (%s)", strerror(errno));
@@ -227,9 +238,9 @@ sensors_poll_context_t::~sensors_poll_context_t() {
 int sensors_poll_context_t::activate(int handle, int enabled) {
     int index = handleToDriver(handle);
     if (index < 0) return index;
-    if (index == gyro && enabled == 0) {
+/*    if (index == gyro && enabled == 0) {
         usleep(200*1000);
-    }
+    }*/
     int err =  mSensors[index]->enable(handle, enabled);
     if (enabled && !err) {
         const char wakeMessage(WAKE_MESSAGE);
@@ -273,7 +284,7 @@ int sensors_poll_context_t::pollEvents(sensors_event_t* data, int count)
                     data->acceleration.y,
                     data->acceleration.z);
                 break;
-            case SENSOR_TYPE_MAGNETIC_FIELD:
+/*            case SENSOR_TYPE_MAGNETIC_FIELD:
                 ALOGD_IF(DEBUG, "Sensors: Magn x:%f y:%f z:%f",
                     data->magnetic.x,
                     data->magnetic.y,
@@ -291,6 +302,7 @@ int sensors_poll_context_t::pollEvents(sensors_event_t* data, int count)
                     data->gyro.y,
                     data->gyro.z);
                 break;
+*/
             default:
                 break;
         }

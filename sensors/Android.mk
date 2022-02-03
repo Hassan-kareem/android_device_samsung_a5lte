@@ -31,6 +31,7 @@ LOCAL_CFLAGS := -DALOG_TAG=\"Sensors\"
 LOCAL_SRC_FILES := 						\
 				sensors.cpp 			\
 				SensorBase.cpp			\
+				AccelSensor.cpp			\
 				LightSensor.cpp			\
 				ProximitySensor.cpp		\
 				AkmSensor.cpp                   \

@@ -34,6 +34,7 @@ protected:
     char        input_name[PATH_MAX];
     int         dev_fd;
     int         data_fd;
+    int         flush_state;
 
     int openInput(const char* inputName);
     static int64_t getTimestamp();

@@ -89,6 +89,7 @@ int SensorBase::flush(int handle)
 {
     return 0;
 }
+
 bool SensorBase::hasPendingEvents() const {
     return false;
 }

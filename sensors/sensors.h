@@ -83,9 +83,9 @@ __BEGIN_DECLS
 */
 
 // for akm8975
-#define EVENT_TYPE_ACCEL_X          ABS_Y  //1
-#define EVENT_TYPE_ACCEL_Y          ABS_X  //0
-#define EVENT_TYPE_ACCEL_Z          ABS_Z  //2
+#define EVENT_TYPE_ACCEL_X          ABS_X
+#define EVENT_TYPE_ACCEL_Y          ABS_Y 
+#define EVENT_TYPE_ACCEL_Z          ABS_Z
 //#define EVENT_TYPE_ACCEL_STATUS     ABS_WHEEL //8
 
 #define EVENT_TYPE_YAW              ABS_RX  //3
@@ -106,16 +106,15 @@ __BEGIN_DECLS
 #define EVENT_TYPE_GYRO_Y           REL_RY
 #define EVENT_TYPE_GYRO_Z           REL_RZ
 
-// 90 LSB = 1G for KR3DM
-#define LSB                         (90.0f)
-#define NUMOFACCDATA                (8.0f)
+#define LSG                         (512.0f)
 
 // conversion of acceleration data to SI units (m/s^2)
-#define RANGE_A                     (2*GRAVITY_EARTH)
-#define CONVERT_A                   (GRAVITY_EARTH / LSB / NUMOFACCDATA)
+#define RANGE_A                     (4*GRAVITY_EARTH)
+#define RESOLUTION_A                (GRAVITY_EARTH / LSG)
+#define CONVERT_A                   (GRAVITY_EARTH / LSG)
 #define CONVERT_A_X                 (CONVERT_A)
-#define CONVERT_A_Y                 (-CONVERT_A)
-#define CONVERT_A_Z                 (-CONVERT_A)
+#define CONVERT_A_Y                 (CONVERT_A)
+#define CONVERT_A_Z                 (CONVERT_A)
 
 // conversion of magnetic data to uT units
 #define CONVERT_M                   (1.0f/16.0f)
