@@ -82,6 +82,11 @@ static const struct sensor_t sSensorList[] = {
           1, SENSORS_PROXIMITY_HANDLE,
           SENSOR_TYPE_PROXIMITY, 8.0f, 8.0f, 0.75f, 0, 0, 0,
           "", "", 0, SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE, {0, 0},},
+        { "TAOS TMD3782 Light Sensor",
+          "AMS , Inc.",
+          1, SENSORS_LIGHT_HANDLE,
+          SENSOR_TYPE_LIGHT, 65555.0f, 1.0f, 0.75f, 0, 0, 0,
+          "", "", 0, 0, {0, 0},},
 /*        { "AK8975 3-axis Magnetic field sensor",
           "Asahi Kasei Microdevices",
           1, SENSORS_MAGNETIC_FIELD_HANDLE,
@@ -92,12 +97,6 @@ static const struct sensor_t sSensorList[] = {
           1, SENSORS_ORIENTATION_HANDLE,
           SENSOR_TYPE_ORIENTATION, 360.0f, CONVERT_O, 7.8f, 16667, 0, 0,
           "", "", 0, 0, {0, 0}},
-        { "CM3663 Light sensor",
-          "Capella Microsystems",
-          1, SENSORS_LIGHT_HANDLE,
-          SENSOR_TYPE_LIGHT, 10240.0f, 1.0f, 0.75f, 0, 0, 0,
-          "", "", 0, 0, {0, 0},},
-
         { "K3G Gyroscope sensor",
           "STMicroelectronics",
           1, SENSORS_GYROSCOPE_HANDLE,
@@ -153,10 +152,10 @@ private:
     enum {
         accel           = 0,
         proximity       = 1,
+        light           = 2,	
 /*
-        akm             = 2,
-        gyro            = 3,
-        light           = 4,
+        akm             = 3,
+        gyro            = 4,
 */
         numSensorDrivers,
         numFds,
@@ -174,12 +173,12 @@ private:
                 return accel;
             case ID_P:
                 return proximity;
+            case ID_L:
+                return light;
 /*            case ID_M:
             case ID_O:
             case ID_SM:
                 return akm;
-            case ID_L:
-                return light;
             case ID_GY:
                 return gyro;
 */
@@ -202,11 +201,11 @@ sensors_poll_context_t::sensors_poll_context_t()
     mPollFds[proximity].events = POLLIN;
     mPollFds[proximity].revents = 0;
 
-/*    mSensors[light] = new LightSensor();
+    mSensors[light] = new LightSensor();
     mPollFds[light].fd = mSensors[light]->getFd();
     mPollFds[light].events = POLLIN;
     mPollFds[light].revents = 0;
-
+/*
     mSensors[akm] = new AkmSensor();
     mPollFds[akm].fd = mSensors[akm]->getFd();
     mPollFds[akm].events = POLLIN;
