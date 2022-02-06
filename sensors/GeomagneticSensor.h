@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef ANDROID_AKM_SENSOR_H
-#define ANDROID_AKM_SENSOR_H
+#ifndef ANDROID_GEOMAGNETIC_SENSOR_H
+#define ANDROID_GEOMAGNETIC_SENSOR_H
 
 #include <stdint.h>
 #include <errno.h>
@@ -31,40 +31,35 @@
 
 struct input_event;
 
-class AkmSensor : public SensorBase {
+class GeomagneticSensor : public SensorBase {
 public:
-            AkmSensor();
-    virtual ~AkmSensor();
+            GeomagneticSensor();
+    virtual ~GeomagneticSensor();
 
     enum {
-        Accelerometer     = 0,
-        MagneticField     = 1,
-        Orientation       = 2,
-        SignificantMotion = 3,
+        MagneticField     = 0,
         numSensors
     };
 
+    int setInitialState();
     virtual int setDelay(int32_t handle, int64_t ns);
     virtual int enable(int32_t handle, int enabled);
     virtual int readEvents(sensors_event_t* data, int count);
     void processEvent(int code, int value);
-    int batch(int handle, int flags, int64_t period_ns, int64_t timeout);
     int flush(int handle);
 
 private:
     int mAccRefCount;
     int mMotionValue;
-    int loadAKMLibrary();
-    int update_delay();
-    void *mLibAKM;
+
     uint32_t mEnabled;
-    uint32_t mFlushed;
     uint32_t mPendingMask;
     InputEventCircularReader mInputReader;
     sensors_event_t mPendingEvents[numSensors];
-    uint64_t mDelays[numSensors];
+    char input_sysfs_path[PATH_MAX];
+    int input_sysfs_path_len;
 };
 
 /*****************************************************************************/
 
-#endif  // ANDROID_AKM_SENSOR_H
+#endif  // ANDROID_GEOMAGNETIC_SENSOR_H

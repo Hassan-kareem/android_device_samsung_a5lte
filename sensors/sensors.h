@@ -93,9 +93,9 @@ __BEGIN_DECLS
 #define EVENT_TYPE_ROLL             ABS_RZ  //5
 #define EVENT_TYPE_ORIENT_STATUS    ABS_WHEEL //8
 
-#define EVENT_TYPE_MAGV_X           ABS_RUDDER  // 6
-#define EVENT_TYPE_MAGV_Y           ABS_THROTTLE  // 7
-#define EVENT_TYPE_MAGV_Z           ABS_GAS  // 9
+#define EVENT_TYPE_MAGV_X           ABS_X  // 6
+#define EVENT_TYPE_MAGV_Y           ABS_Y  // 7
+#define EVENT_TYPE_MAGV_Z           ABS_Z  // 9
 
 #define EVENT_TYPE_TEMPERATURE      ABS_THROTTLE
 #define EVENT_TYPE_STEP_COUNT       ABS_GAS

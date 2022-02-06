@@ -35,7 +35,7 @@ SensorBase::SensorBase(
         const char* dev_name,
         const char* data_name)
     : dev_name(dev_name), data_name(data_name),
-      dev_fd(-1), data_fd(-1)
+      dev_fd(-1), data_fd(-1), flush_state(0)
 {
     if (data_name) {
         data_fd = openInput(data_name);

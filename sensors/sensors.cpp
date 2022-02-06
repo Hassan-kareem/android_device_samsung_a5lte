@@ -36,16 +36,11 @@
 
 #include "LightSensor.h"
 #include "ProximitySensor.h"
-#include "AkmSensor.h"
+#include "GeomagneticSensor.h"
 #include "GyroSensor.h"
 #include "AccelSensor.h"
 
 /*****************************************************************************/
-
-#define DELAY_OUT_TIME 0x7FFFFFFF
-
-#define LIGHT_SENSOR_POLLTIME    2000000000
-
 
 #define SENSORS_ACCELERATION     (1<<ID_A)
 #define SENSORS_MAGNETIC_FIELD   (1<<ID_M)
@@ -61,10 +56,6 @@
 #define SENSORS_PROXIMITY_HANDLE          4
 #define SENSORS_GYROSCOPE_HANDLE          5
 #define SENSORS_SIGNIFICANT_MOTION_HANDLE 6
-
-#define AKM_FTRACE 0
-#define AKM_DEBUG 0
-#define AKM_DATA 0
 
 #define DEBUG 0
 
@@ -87,21 +78,12 @@ static const struct sensor_t sSensorList[] = {
           1, SENSORS_LIGHT_HANDLE,
           SENSOR_TYPE_LIGHT, 65555.0f, 1.0f, 0.75f, 0, 0, 0,
           "", "", 0, 0, {0, 0},},
-/*        { "AK8975 3-axis Magnetic field sensor",
-          "Asahi Kasei Microdevices",
+        { "BMC150 Magnetic Sensor",
+          "Bosch Sensortec",
           1, SENSORS_MAGNETIC_FIELD_HANDLE,
-          SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, CONVERT_M, 6.8f, 16667, 0, 0,
+          SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, CONVERT_M, 6.8f, 20000, 0, 0,
           "", "", 0, 0, {0, 0}},
-        { "AK8973 Orientation sensor",
-          "Asahi Kasei Microdevices",
-          1, SENSORS_ORIENTATION_HANDLE,
-          SENSOR_TYPE_ORIENTATION, 360.0f, CONVERT_O, 7.8f, 16667, 0, 0,
-          "", "", 0, 0, {0, 0}},
-        { "K3G Gyroscope sensor",
-          "STMicroelectronics",
-          1, SENSORS_GYROSCOPE_HANDLE,
-          SENSOR_TYPE_GYROSCOPE, RANGE_GYRO, CONVERT_GYRO, 6.1f, 1190, 0, 0,
-          "", "", 0, 0, {0, 0},},
+/*
         { "Significant motion sensor (Accelerometer)",
           "STMicroelectronics",
           1, SENSORS_SIGNIFICANT_MOTION_HANDLE,
@@ -152,9 +134,9 @@ private:
     enum {
         accel           = 0,
         proximity       = 1,
-        light           = 2,	
+        light           = 2,
+        geomagnetic     = 3,
 /*
-        akm             = 3,
         gyro            = 4,
 */
         numSensorDrivers,
@@ -175,7 +157,9 @@ private:
                 return proximity;
             case ID_L:
                 return light;
-/*            case ID_M:
+            case ID_M:
+                return geomagnetic;
+/*
             case ID_O:
             case ID_SM:
                 return akm;
@@ -205,17 +189,12 @@ sensors_poll_context_t::sensors_poll_context_t()
     mPollFds[light].fd = mSensors[light]->getFd();
     mPollFds[light].events = POLLIN;
     mPollFds[light].revents = 0;
-/*
-    mSensors[akm] = new AkmSensor();
-    mPollFds[akm].fd = mSensors[akm]->getFd();
-    mPollFds[akm].events = POLLIN;
-    mPollFds[akm].revents = 0;
 
-    mSensors[gyro] = new GyroSensor();
-    mPollFds[gyro].fd = mSensors[gyro]->getFd();
-    mPollFds[gyro].events = POLLIN;
-    mPollFds[gyro].revents = 0;
-*/
+    mSensors[geomagnetic] = new GeomagneticSensor();
+    mPollFds[geomagnetic].fd = mSensors[geomagnetic]->getFd();
+    mPollFds[geomagnetic].events = POLLIN;
+    mPollFds[geomagnetic].revents = 0;
+
     int wakeFds[2];
     int result = pipe(wakeFds);
     ALOGE_IF(result<0, "error creating wake pipe (%s)", strerror(errno));

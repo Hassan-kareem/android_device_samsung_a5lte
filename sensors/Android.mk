@@ -34,7 +34,7 @@ LOCAL_SRC_FILES := 						\
 				AccelSensor.cpp			\
 				LightSensor.cpp			\
 				ProximitySensor.cpp		\
-				AkmSensor.cpp                   \
+				GeomagneticSensor.cpp           \
 				GyroSensor.cpp                  \
                                 InputEventReader.cpp
 
