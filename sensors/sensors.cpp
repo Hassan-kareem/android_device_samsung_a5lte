@@ -83,6 +83,11 @@ static const struct sensor_t sSensorList[] = {
           1, SENSORS_MAGNETIC_FIELD_HANDLE,
           SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, CONVERT_M, 6.8f, 20000, 0, 0,
           "", "", 0, 0, {0, 0}},
+        { "BMC150 Orientation Sensor",
+          "Bosch Sensortec",
+          1, SENSORS_ORIENTATION_HANDLE,
+          SENSOR_TYPE_ORIENTATION, 2000.0f, CONVERT_M, 6.8f, 20000, 0, 0,
+          "", "", 0, 0, {0, 0}},
 /*
         { "Significant motion sensor (Accelerometer)",
           "STMicroelectronics",
