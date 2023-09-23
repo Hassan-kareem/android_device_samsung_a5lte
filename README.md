@@ -1,4 +1,9 @@
-# Device configuration for Samsung SM-A500 Galaxy A5
+# Device configuration for Samsung Galaxy A5 (SM-A500x)
+
+Specifically a fork of srkndenis's for my personal use.
+I don't know anything but taking stuff, so there's probably not going to be
+anything unique here.
+Here I would like to send my gratitude to the other contributors to this config.
 
 ## Spec Sheet
 
@@ -16,7 +21,3 @@
 | Display                 | 720 x 1280 pixels, 5.0" Super AMOLED   |
 | Rear Camera             | 13 MP, LED flash                  |
 | Front Camera            | 5 MP                              |
-
-## Device Picture
-
-![Samsung SM-A500 Galaxy A5](https://s.4pda.to/PPWs6YcQoEs8vtDfqLmz0vYNR3TuurwioOSXdcrHguVUPdxUpXA.jpg?_=0 "Samsung SM-A500 Galaxy A5")
