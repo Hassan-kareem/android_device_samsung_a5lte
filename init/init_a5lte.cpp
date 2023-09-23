@@ -160,6 +160,13 @@ void vendor_load_properties()
         property_override("ro.build.description", "a5ltezt-user 5.0.2 LRX22G A500YZZTU1BOK2 release-keys");
         property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "SM-A500YZ");
         property_override_triple("ro.product.device", "ro.product.system.device", "ro.product.vendor.device", "a5ltezt");
+
+    } else if (bootloader.find("A5000") == 0) {
+        /* SM-A5000 */
+        property_override_triple("ro.build.fingerprint", "ro.system.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/a5ltezc/a5ltechn:6.0.1/MMB29M/A5000ZCS1CRG1:user/release-keys");
+        property_override("ro.build.description", "a5ltezc-user 6.0.1 MMB29M A5000ZCS1CRG1 release-keys"); // after a system upgrade
+        property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "SM-A5000");
+        property_override_triple("ro.product.device", "ro.product.system.device", "ro.product.vendor.device", "a5ltechn");
     }
 
     std::string device = GetProperty("ro.product.device", "");
