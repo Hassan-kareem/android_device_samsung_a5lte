@@ -190,6 +190,7 @@ include device/samsung/a5lte/sepolicy/sepolicy.mk
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
+RECOVERY_VARIANT := twrp
 include $(DEVICE_PATH)/twrp.mk
 endif
 
