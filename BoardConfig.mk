@@ -181,16 +181,15 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
 # Network Routing
 TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
 
+# SELinux
+include device/samsung/a5lte/sepolicy/sepolicy.mk
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_SKIP_EV_REL_INPUT := true
 
-# SELinux
-include device/samsung/a5lte/sepolicy/sepolicy.mk
-
-# TWRP
-ifeq ($(WITH_TWRP),true)
 RECOVERY_VARIANT := twrp
+ifeq ($(RECOVERY_VARIANT),twrp)
 include $(DEVICE_PATH)/twrp.mk
 endif
 
