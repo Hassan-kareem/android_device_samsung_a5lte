@@ -134,7 +134,7 @@ PRODUCT_COPY_FILES += \
 
 # Doze
 #PRODUCT_PACKAGES += \
-    SamsungDoze
+#    SamsungDoze
 
 # Dirac
 PRODUCT_PACKAGES += \
