@@ -181,17 +181,25 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
 # Network Routing
 TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
 
-# SELinux
-include device/samsung/a5lte/sepolicy/sepolicy.mk
-
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_SKIP_EV_REL_INPUT := true
+BOARD_HAS_DOWNLOAD_MODE := true
 
+# TWRP
+TW_INCLUDE_CRYPTO := true
+TW_THEME := portrait_hdpi
+TW_HAS_DOWNLOAD_MODE := true
+TW_NO_REBOOT_BOOTLOADER := true
+ifneq ($(wildcard bootable/recovery-twrp),)
 RECOVERY_VARIANT := twrp
-ifeq ($(RECOVERY_VARIANT),twrp)
-include $(DEVICE_PATH)/twrp.mk
 endif
+ifeq ($(RECOVERY_VARIANT),twrp)
+TARGET_RECOVERY_DEVICE_DIRS += device/samsung/a5lte/twrp
+endif
+
+# SELinux
+include device/samsung/a5lte/sepolicy/sepolicy.mk
 
 #Light
 TARGET_PROVIDES_LIBLIGHT := true
