@@ -147,6 +147,7 @@ TARGET_KERNEL_VARIANT_CONFIG := msm8916_sec_a5u_eur_defconfig
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
 # Kernel - Toolchain
+TARGET_KERNEL_CLANG_COMPILE := false
 KERNEL_TOOLCHAIN := $(PWD)/prebuilts/gcc/linux-x86/arm/arm-eabi-7.2/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 
