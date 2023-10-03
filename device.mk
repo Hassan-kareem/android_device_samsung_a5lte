@@ -45,7 +45,10 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.a2dp.default \
+    android.hardware.bluetooth.a2dp@1.0-impl \
+    android.hardware.bluetooth.audio@2.0-impl \
+    audio.bluetooth.default \
+    # audio.a2dp.default \ not avaliable since tiramisu
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
@@ -72,7 +75,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@2.0-service \
     android.hardware.audio.effect@6.0 \
     android.hardware.audio.effect@6.0-impl \
-    android.hardware.bluetooth.a2dp@1.0-impl
 
 # Audio configuration file
 PRODUCT_COPY_FILES += \
