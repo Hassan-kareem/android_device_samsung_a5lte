@@ -27,6 +27,7 @@ DEVICE_PACKAGE_OVERLAYS := \
 PRODUCT_PACKAGES += \
     AntHalService-Soong \
     com.dsi.ant@1.0.vendor
+# TODO: it seems we can just import AntHalService here but idk
 
 # APEX
 PRODUCT_COPY_FILES += \
