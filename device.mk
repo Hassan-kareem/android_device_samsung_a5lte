@@ -113,12 +113,13 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-service
 
 # BoringSSL Hacks
+# we'd probably like to avoid this
 PRODUCT_PACKAGES += \
     libboringssl-compat
 
 # Fastbootd
-#PRODUCT_PACKAGES += \
-#    fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -445,5 +446,7 @@ PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 # for gms modules.
 PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK := true
 
+# FIXME
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 # Call the proprietary setup
 $(call inherit-product, vendor/samsung/a5lte/a5lte-vendor.mk)
