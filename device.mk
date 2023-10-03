@@ -446,7 +446,5 @@ PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 # for gms modules.
 PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK := true
 
-# FIXME
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 # Call the proprietary setup
 $(call inherit-product, vendor/samsung/a5lte/a5lte-vendor.mk)
