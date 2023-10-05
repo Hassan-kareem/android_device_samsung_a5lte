@@ -16,12 +16,14 @@
 
 SEPOLICY_LEGACY_PATH := device/qcom/sepolicy-legacy
 SEPOLICY_UM_PATH := device/qcom/sepolicy-legacy-um
+SEPOLICY_DEVICE_PATH := device/samsung/a5lte/sepolicy
 include $(SEPOLICY_UM_PATH)/SEPolicy.mk
 
 # Board specific SELinux policy variable definitions as stolen from
 # legacier repo
 BOARD_VENDOR_SEPOLICY_DIRS := \
               $(BOARD_VENDOR_SEPOLICY_DIRS) \
+              $(SEPOLICY_DEVICE_PATH)/pmacros \
               $(SEPOLICY_LEGACY_PATH)/legacy-common \
               $(SEPOLICY_UM_PATH) \
               $(SEPOLICY_UM_PATH)/legacy/vendor/common/sysmonapp \
@@ -39,5 +41,5 @@ ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 endif
 
 # DEVICE specific SELinux policy variable definitions
-BOARD_VENDOR_SEPOLICY_DIRS += device/samsung/a5lte/sepolicy/common
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/samsung/a5lte/sepolicy/private
+BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_DEVICE_PATH)/common
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(SEPOLICY_DEVICE_PATH)/private
