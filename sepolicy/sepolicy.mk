@@ -14,10 +14,29 @@
 # limitations under the License.
 #
 
-include device/qcom/sepolicy-legacy/sepolicy.mk
+SEPOLICY_LEGACY_PATH := device/qcom/sepolicy-legacy
+SEPOLICY_UM_PATH := device/qcom/sepolicy-legacy-um
+include $(SEPOLICY_UM_PATH)/SEPolicy.mk
 
-# Board specific SELinux policy variable definitions
-BOARD_VENDOR_SEPOLICY_DIRS += \
-    device/samsung/a5lte/sepolicy/common
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-    device/samsung/a5lte/sepolicy/private
+# Board specific SELinux policy variable definitions as stolen from
+# legacier repo
+BOARD_VENDOR_SEPOLICY_DIRS := \
+              $(BOARD_VENDOR_SEPOLICY_DIRS) \
+              $(SEPOLICY_UM_PATH) \
+              $(SEPOLICY_UM_PATH)/legacy/vendor/common/sysmonapp \
+              $(SEPOLICY_UM_PATH)/legacy/vendor/ssg \
+              $(SEPOLICY_UM_PATH)/legacy/vendor/common
+
+BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_LEGACY_PATH)/msm8916
+
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+  ifneq ($(PRODUCT_SET_DEBUGFS_RESTRICTIONS),true)
+    BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_UM_PATH)/legacy/vendor/common/debugfs
+    BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_UM_PATH)/legacy/vendor/test/debugfs
+  endif
+  BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_UM_PATH)/legacy/vendor/test
+endif
+
+# DEVICE specific SELinux policy variable definitions
+BOARD_VENDOR_SEPOLICY_DIRS += device/samsung/a5lte/sepolicy/common
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/samsung/a5lte/sepolicy/private
