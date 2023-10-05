@@ -23,7 +23,7 @@ include $(SEPOLICY_UM_PATH)/SEPolicy.mk
 # legacier repo
 BOARD_VENDOR_SEPOLICY_DIRS := \
               $(BOARD_VENDOR_SEPOLICY_DIRS) \
-              $(SEPOLICY_DEVICE_PATH)/pmacros \
+              $(SEPOLICY_LEGACY_PATH)/common \
               $(SEPOLICY_LEGACY_PATH)/legacy-common \
               $(SEPOLICY_UM_PATH) \
               $(SEPOLICY_UM_PATH)/legacy/vendor/common/sysmonapp \
