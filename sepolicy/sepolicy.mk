@@ -14,10 +14,10 @@
 # limitations under the License.
 #
 
-SEPOLICY_LEGACY_PATH := device/qcom/sepolicy-legacy
-SEPOLICY_DEVICE_PATH := device/samsung/a5lte/sepolicy
-include $(SEPOLICY_LEGACY_PATH)/sepolicy.mk
+include device/qcom/sepolicy-legacy/sepolicy.mk
 
-# DEVICE specific SELinux policy variable definitions
-BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_DEVICE_PATH)/common
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(SEPOLICY_DEVICE_PATH)/private
+# Board specific SELinux policy variable definitions
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    device/samsung/a5lte/sepolicy/common
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
+    device/samsung/a5lte/sepolicy/private

@@ -3,8 +3,8 @@ cc_library_static {
     recovery_available: true,
     srcs: ["init_a5lte.cpp"],
     include_dirs: [
-        //"system/core/libbase/include",
         "system/core/init",
     ],
+
     whole_static_libs: ["libbase"],
 }
