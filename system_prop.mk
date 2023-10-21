@@ -195,8 +195,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.usb.vid=2a96
 
 # Fastbootd
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.fastbootd.available=true
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ro.fastbootd.available=true
 
 # Zram
 PRODUCT_PROPERTY_OVERRIDES += \
