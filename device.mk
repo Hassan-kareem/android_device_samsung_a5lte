@@ -118,8 +118,9 @@ PRODUCT_PACKAGES += \
     libboringssl-compat
 
 # Fastbootd
-PRODUCT_PACKAGES += \
-    fastbootd
+# I don't think this works rn
+#PRODUCT_PACKAGES += \
+#    fastbootd
 
 # Camera
 PRODUCT_PACKAGES += \
