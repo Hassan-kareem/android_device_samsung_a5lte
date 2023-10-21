@@ -44,8 +44,6 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth.audio@2.0-impl \
-    audio.bluetooth.default \
     android.hardware.bluetooth.a2dp@1.0-impl \
     audio.r_submix.default \
     audio.usb.default \
