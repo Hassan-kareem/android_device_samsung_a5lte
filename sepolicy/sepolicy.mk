@@ -19,5 +19,7 @@ include device/qcom/sepolicy-legacy/sepolicy.mk
 # Board specific SELinux policy variable definitions
 BOARD_VENDOR_SEPOLICY_DIRS += \
     device/samsung/a5lte/sepolicy/common
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
+    device/samsung/a5lte/sepolicy/public
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     device/samsung/a5lte/sepolicy/private

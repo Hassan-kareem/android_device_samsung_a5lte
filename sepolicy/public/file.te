@@ -1,0 +1,2 @@
+type sysfs_disk_stat, fs_type, sysfs_type;
+
