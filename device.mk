@@ -138,9 +138,9 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_PACKAGES += \
 #    SamsungDoze
 
-# Dirac
+# for Dirac
 PRODUCT_PACKAGES += \
-    Dirac
+    SMA5Parts
 
 # FlipFlap
 PRODUCT_PACKAGES += \
