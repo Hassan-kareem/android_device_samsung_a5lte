@@ -12,7 +12,7 @@ LOCAL_C_INCLUDES := \
 	external/tinyalsa/include \
 	external/tinycompress/include \
 	hardware/libhardware/include \
-    $(call project-path-for,qcom-audio)/hal \
+        hardware/qcom-caf/msm8916/audio/hal \
 	$(call include-path-for, audio-utils) \
 	$(call include-path-for, audio-route) \
 	$(call include-path-for, audio-effects)
