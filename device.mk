@@ -15,6 +15,10 @@
 # limitations under the License.
 #
 
+# Must define platform variant before including any common things
+# FIXME: can be removed?
+TARGET_BOARD_PLATFORM_VARIANT := msm8916
+
 # Inherit from common
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
 

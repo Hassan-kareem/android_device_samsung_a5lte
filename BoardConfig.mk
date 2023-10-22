@@ -24,6 +24,7 @@ BUILD_BROKEN_PREBUILT_ELF_FILES := true
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8916
+TARGET_BOARD_PLATFORM_VARIANT := msm8916
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
@@ -187,15 +188,8 @@ TARGET_RECOVERY_SKIP_EV_REL_INPUT := true
 BOARD_HAS_DOWNLOAD_MODE := true
 
 # TWRP
-TW_INCLUDE_CRYPTO := true
-TW_THEME := portrait_hdpi
-TW_HAS_DOWNLOAD_MODE := true
-TW_NO_REBOOT_BOOTLOADER := true
-ifneq ($(wildcard bootable/recovery-twrp),)
-RECOVERY_VARIANT := twrp
-endif
-ifeq ($(RECOVERY_VARIANT),twrp)
-TARGET_RECOVERY_DEVICE_DIRS += device/samsung/a5lte/twrp
+ifeq ($(WITH_TWRP),true)
+include device/samsung/a5lte/twrp/twrp.mk
 endif
 
 # SELinux

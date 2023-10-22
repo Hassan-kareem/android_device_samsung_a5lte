@@ -17,8 +17,10 @@
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from a3lte device
+# Inherit from a5lte device
 $(call inherit-product, device/samsung/a5lte/device.mk)
+# Inherit custom props
+$(call inherit-product, device/samsung/a5lte/system_prop.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := a5lte
