@@ -26,4 +26,8 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
     device/samsung/a5lte/sepolicy/common-lineage
 else
 $(warning building without lineageos sepolicies)
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
+    device/samsung/a5lte/sepolicy/public-aosp
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
+    device/samsung/a5lte/sepolicy/private-aosp
 endif
