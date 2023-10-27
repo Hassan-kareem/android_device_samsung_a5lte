@@ -21,3 +21,9 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
     device/samsung/a5lte/sepolicy/common
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     device/samsung/a5lte/sepolicy/private
+ifneq ($(wildcard device/lineage/sepolicy),)
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    device/samsung/a5lte/sepolicy/common-lineage
+else
+$(warning building without lineageos sepolicies)
+endif
