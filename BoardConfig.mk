@@ -143,6 +143,9 @@ BOARD_KERNEL_SEPARATED_DT := true
 TARGET_KERNEL_SOURCE := kernel/samsung/msm8916
 TARGET_KERNEL_CONFIG := msm8916_sec_defconfig
 TARGET_KERNEL_VARIANT_CONFIG := msm8916_sec_a5u_eur_defconfig
+ifeq ($(WITH_TWRP),true) # FIXME
+TARGET_KERNEL_VARIANT_CONFIG := msm8916_sec_a5u_eur_twrp_defconfig
+endif
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
 # Kernel - Toolchain
