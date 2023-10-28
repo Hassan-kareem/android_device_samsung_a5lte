@@ -12,9 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+RECOVERY_VARIANT := twrp
 TW_THEME := portrait_hdpi
-TW_INCLUDE_CRYPTO := true
+#TW_INCLUDE_CRYPTO := true
 TW_HAS_DOWNLOAD_MODE := true
 TW_NO_REBOOT_BOOTLOADER := true
+
+TW_MTP_DEVICE := /dev/mtp_usb
 
 TARGET_RECOVERY_DEVICE_DIRS += device/samsung/a5lte/twrp
