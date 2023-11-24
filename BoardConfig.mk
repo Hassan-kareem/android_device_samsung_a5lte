@@ -192,7 +192,7 @@ BOARD_HAS_DOWNLOAD_MODE := true
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
-BOARD_RAMDISK_USE_LZMA := true
+BOARD_RAMDISK_USE_LZ4 := true
 
 include device/samsung/a5lte/twrp/twrp.mk
 endif
