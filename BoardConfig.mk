@@ -192,6 +192,8 @@ BOARD_HAS_DOWNLOAD_MODE := true
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
+BOARD_RAMDISK_USE_LZMA := true
+
 include device/samsung/a5lte/twrp/twrp.mk
 endif
 
@@ -218,6 +220,7 @@ TARGET_LD_SHIM_LIBS := \
 TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true
 
 # Ignore Dependencies
+# FIXME: yes
 ALLOW_MISSING_DEPENDENCIES := true
 
 # Wi-Fi
